@@ -1,0 +1,23 @@
+function [y] = gausseidel(A,b,x0,tol,itmax)
+%{
+Joel Quintuna
+A: coeficientes de las ecuaciones 
+b : vector que tiene los terminos independientes del sistema de
+ecuaciones
+x0: vector que tiene valores iniciales sobre los cuales se ira realizando el calculo
+x : una solucion incial sobre la cual se  va a ir trabajando
+%}
+n=length(x0);%numero de variables del sistema
+
+for k=1:itmax%bucle para ieterar el metodo
+    w=x0;%variable auxiliar para comparar despues 
+    %se calcula la nueva aproximacion
+    for i=1:n   %se va hasta n porque son n variables que encontrar 
+       s=A(i,1:i-1)*x0(1:i-1)+A(i,i+1:n)*x0(i+1:n);   %s es la sumatoria de el termino anterior de actual y anterior de la matriz a
+       x0(i)=(b(i)-s)/A(i,i);  %se aplica la formuma de gausseidel para el termino siguiente
+    end
+    if norm(x0-w)<tol  %si la solucion obtenida es menor al error permitido, se para el bucle
+        return
+    end
+y=x0;
+end
