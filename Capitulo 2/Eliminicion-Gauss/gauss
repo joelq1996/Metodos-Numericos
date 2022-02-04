@@ -1,0 +1,29 @@
+function r= gauss(A,b)
+%{
+Joel Quintuna
+A: Matriz ampliada
+b: vector de resultados
+r: vector de valores resultantes
+%}
+n=length(b);
+p=zeros(n,1);% vector de ceros de n filas y una columna
+for k=1:n-1
+    for i=k+1:n
+        xmult=A(i,k)/A(k,k);
+        for j=k+1:n
+            A(i,j)=A(i,j)-xmult*A(k,j);
+        end
+        b(i)=b(i)-xmult*b(i);
+    end
+end
+%sustitucion hacia atras
+p(n)=b(n)/A(n,n);
+for i=n-1:-1:1
+    sum=b(i);
+    for j=i+1:n
+        sum=sum-A(i,j)*p(j);
+    end
+    p(i)=sum/A(i,i);
+end
+   r=p;
+end
