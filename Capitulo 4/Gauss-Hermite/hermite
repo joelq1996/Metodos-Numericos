@@ -1,0 +1,29 @@
+function  suma= hermite(f,n)
+%{
+Joel Quintuna
+f: funcion de la cual se desea obtener la integral 
+n: cantidad de valores a usar
+suma: valor aproximado de la integral en el intervalo a,b
+%}
+suma=0;
+switch n
+    case 1
+        X=[0.707107 -0.707107];
+        A=[0.886227 0.886227];
+    case 2
+        X=[0 1.224745 -1.224745];
+        A=[1.181636 0.295409 0.295409]; 
+    case 3
+        X=[0.524648 -0.524648 1.650680 -1.650680];
+        A=[0.804914  0.804914 0.0813128 0.0813128];  
+    case 4
+        X=[0 0.958572 -0.958572 2.020183 -2.020183];
+        A=[0.945308 0.393619 0.393619 0.0199532 0.0199532];  
+    case 5
+        X=[0.436077 -0.436077 1.335849 -1.335849 2.350605 -2.350605];
+        A=[0.724629 0.724629 0.157067 0.157067 0.00453001 0.00453001]; 
+end
+for i=1:n+1
+    suma = suma + A(i)*f(X(i));
+    end
+end
