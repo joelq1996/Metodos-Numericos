@@ -1,0 +1,42 @@
+function [yi,p] = pol_newton(x,y,xi)
+%{
+Joel Quintuna
+x & y: vectores de datos tabulados
+xi: valor a interpolar
+yi: valor interpolado
+p: polinomio de interpolacion
+%}
+n= length(x);
+b= zeros(n);
+b(:,1)=y(:);
+% tabla de diferencias
+for j=2:n
+    for i=1:n-j+1
+        b(i,j)=(b(i+1,j-1)-b(i,j-1))/(x(i+j-1)-x(i));
+    end
+end
+%calcular el dato interpolado
+xt=1;
+yi=b(1,1);
+for j=1:n-1
+    xt=xt.*(xi-x(j));
+    yi=yi+b(1,j+i)*xt;
+end
+%construccion del polinomio
+p= num2str(b(1,1));
+xx= x*-1;
+for j=2:n
+    s='';
+    if b(1,j)>=0
+        s = '+';
+    end
+    xt='';
+    for i=1:j-1
+        s2=' ';
+        if xx(i)>=0 
+            s2='+';
+        end
+        xt=strcat(xt,'*(x',s2,num2str(xx(i)),')');
+    end
+    p=strcat(p,s,num2str(b(1,j)),xt);  
+end
