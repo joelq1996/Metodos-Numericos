@@ -1,0 +1,11 @@
+x=[1 4 6 5 3 1.5 2.5 3.5];
+y = log(x);
+xi= log(2);
+
+[yi,p] = pol_newton(x,y,xi);
+disp('El polinomio de interpolacion de newton es: ')
+P=inline(p)
+disp('El valor de xi es: ')
+P(2)
+disp('El valor interpolado es: ')
+yi
