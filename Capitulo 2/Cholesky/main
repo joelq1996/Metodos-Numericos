@@ -1,0 +1,8 @@
+A  = [ 4 -2 -69 ; 20 -7 12 ; -8 13 1000];
+b = [11 ; 70 ; -587];
+disp('cholesky: ');
+try
+[L,u,x] = cholesky(A,b)
+catch err
+    fprintf('error: %s\n', err.message)
+end
