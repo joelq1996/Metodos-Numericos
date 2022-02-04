@@ -1,0 +1,8 @@
+f=@(x)x^4;%funcion
+n=3;
+try
+k=chebyshev(f,n);
+fprintf('Integral aproximada %d',k);
+catch err
+    fprintf('error: %s\n', err.message)
+end
