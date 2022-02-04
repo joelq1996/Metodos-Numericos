@@ -1,0 +1,16 @@
+syms x;
+f=exp(-x);%funcion a evaluar
+a=0;
+b=2;%limites del intervalo
+m=linspace(a,b,200);
+n=subs(f,m);
+try
+k=GL_2puntos(f,a,b);
+fprintf('Integral aproximada %d\n',k);
+catch err
+    fprintf('error: %s\n', err.message)
+end
+
+area(m,n);
+legend('Area bajo la curva');
+title('Metodo Gauss-Legendre 2 Puntos');
