@@ -1,0 +1,10 @@
+A=[3 -0.1 -0.2; 0.1 7 -0.3; 0.3 -0.2 10];
+b=[7.85 -19.3 71.4];
+
+x0=ones(length(b),1);
+tool=0.0001;
+itmax=1000;
+x=gausseidel(A,b,x0,tool,itmax);
+for i=1:length(b)
+    fprintf('%d \n',x(i));
+end
