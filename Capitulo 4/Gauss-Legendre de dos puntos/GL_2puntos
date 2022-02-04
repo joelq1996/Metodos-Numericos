@@ -1,0 +1,22 @@
+function m = GL_2puntos(f,a,b)
+%{
+Joel Quintuna
+f: funcion de la cual se desea obtener la integral aproximada 
+a,b: limites del intervalo.
+m: valor aproximado de la integral de la funcion f en el punto en el
+intervalo a,b
+%}
+syms t
+syms x
+if b>a
+    if (a==-1 ^ b==1)
+        m=subs(f,-1/sqrt(3),x)+subs(f,1/sqrt(3),x);%si los limites de integracion son -1 y 1 se calcula directo
+    else
+        p=((b-a)+(b+a)*t)/2;
+        nueva=subs(f,x,p);%caso contrario se realiza cambio de variable y se aplica la formula
+        m=double(subs(nueva,t,-1/sqrt(3))+subs(nueva,t,1/sqrt(3)));
+  
+    end
+else
+    error('Gauss dos puntos, el limite b debe ser mayor que a');
+end
